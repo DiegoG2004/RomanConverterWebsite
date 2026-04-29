@@ -7,7 +7,7 @@ const expect = chai.expect;
 //it(description, function(){expect(() => convert(input)).to.throw(message);});
 describe('ToRoman, Ones', function() 
 {
-  it("Should convert 1 to I", function(){expect(integerToRoman(1)).to.equal("IV");});
+  it("Should convert 1 to I", function(){expect(integerToRoman(1)).to.equal("I");});
   it("Should convert 2 to II", function(){expect(integerToRoman(2)).to.equal("II");});
   it("Should convert 3 to III", function(){expect(integerToRoman(3)).to.equal("III");});
   it("Should convert 4 to IV", function(){expect(integerToRoman(4)).to.equal("IV");});
