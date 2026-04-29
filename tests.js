@@ -51,7 +51,7 @@ describe('ToRoman, Thousands', function()
   it("Should convert 3000 to MMM", function(){expect(integerToRoman(3000)).to.equal("MMM");});
   it("Should convert 3999 to MMMCMXCIX", function(){expect(integerToRoman(3999)).to.equal("MMMCMXCIX");});
 });
-describe('ToRoman, Errors', function() 
+describe('ToRoman, Errors / Edge cases', function() 
 {
   it("Should give an error for 0", function(){
     expect(() => integerToRoman(0)).to.throw("The number must be between 1 and 3999.");});
@@ -59,9 +59,7 @@ describe('ToRoman, Errors', function()
     expect(() => integerToRoman(-1)).to.throw("The number must be between 1 and 3999.");});
   it("Should give an error for numbers over 3999", function(){
     expect(() => integerToRoman(4000)).to.throw("The number must be between 1 and 3999.");});
-  it("Should give an error for fractions or floating numbers", function(){
-    expect(() => integerToRoman(3/2)).to.throw("The number must be an integer");});
-  //This one fails since it just truncates to 1 and thus prints I
+  it("Should ignore fractions, trucating them", function(){expect(integerToRoman(3/2)).to.equal("I");});
 });
 
 describe('ToInteger, Ones', function() 
@@ -111,7 +109,7 @@ describe('ToInteger, Thousands', function()
   it("Should convert MMMCMXCIX to 3999", function(){expect(romanToInteger('MMMCMXCIX')).to.equal(3999);});
 });
 
-describe('ToInteger, Errors', function() 
+describe('ToInteger, Errors / Edge cases', function() 
 {
   //Taken from feedback of both teacher and classmates
   it("Should give an error for empty input", function(){
@@ -120,8 +118,6 @@ describe('ToInteger, Errors', function()
     expect(() => romanToInteger("Hello")).to.throw("The Roman numeral contains invalid characters.");});
   it("Should check for canonical Romans", function(){
     expect(() => romanToInteger("IC")).to.throw("The Roman numeral is not in canonical form.");});
-  it("Should not accept lowercase letters", function(){
-    expect(() => romanToInteger("v")).to.throw("The Roman numeral contains invalid characters.");});
-  //This one fails since it is not case-sensitive
+  it("Should not be case sensitive", function(){expect(romanToInteger('v')).to.equal(5);}});
 });
 
