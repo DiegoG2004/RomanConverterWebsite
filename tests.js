@@ -118,6 +118,6 @@ describe('ToInteger, Errors / Edge cases', function()
     expect(() => romanToInteger("Hello")).to.throw("The Roman numeral contains invalid characters.");});
   it("Should check for canonical Romans", function(){
     expect(() => romanToInteger("IC")).to.throw("The Roman numeral is not in canonical form.");});
-  it("Should not be case sensitive", function(){expect(romanToInteger('v')).to.equal(5);}});
+  it("Should not be case sensitive", function(){expect(romanToInteger('v')).to.equal(5);});
 });
 
