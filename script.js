@@ -5,7 +5,7 @@
  * @returns {string} The Roman numeral representation.
  * @throws {Error} Throws an error if the number is not within the allowed range.
  */
-function integerToRoman(num) {
+function integerToRoman(num,fromCalculateButton) {
   // Validate that the number is within the allowed range (1-3999)
   if (num <= 0 || num >= 4000) {
     throw new Error('The number must be between 1 and 3999.');
@@ -36,6 +36,14 @@ function integerToRoman(num) {
       result += numeral;  // Append the numeral to the result string.
       num -= value;       // Subtract the numeral's value from num.
     }
+  }
+  if (fromCalculateButton)
+  {
+  //Create one custom event if the code got here from the button
+    gtag('event','Integer_To_Roman_Used',
+         {'Result': result,
+          'timestamp': new Date().toISOString()
+    });
   }
   return result;
 }
@@ -91,10 +99,15 @@ function romanToInteger(roman) {
   // Validate that the Roman numeral is in canonical form.
   // This is done by converting the computed integer back to a Roman numeral
   // and comparing it with the original input.
-  const reconversion = integerToRoman(total);
+  const reconversion = integerToRoman(total,false);
   if (reconversion !== roman) {
     throw new Error('The Roman numeral is not in canonical form.');
   }
+  //Create one custom event
+  gtag('event','Roman_To_Integer_Used',
+       {'Result': total,
+        'timestamp': new Date().toISOString()
+  });
   
   return total;
 }
@@ -125,7 +138,7 @@ function handleConversion() {
         throw new Error('Please enter a valid integer number.');
       }
       // Convert the integer to a Roman numeral.
-      const roman = integerToRoman(num);
+      const roman = integerToRoman(num,true);
       resultDiv.textContent = `Roman Numeral: ${roman}`;
     } else if (mode === 'romanToInt') {
       // Convert the Roman numeral to an integer.
