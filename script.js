@@ -40,9 +40,9 @@ function integerToRoman(num,fromCalculateButton) {
   if (fromCalculateButton)
   {
   //Create one custom event if the code got here from the button
-    gtag('event','Integer_To_Roman_Used',
-         {'Result': result,
-          'timestamp': new Date().toISOString()
+  gtag('event','Integer_To_Roman_Used',
+    {'Result': result,
+      'timestamp': new Date().toISOString()
     });
   }
   return result;
@@ -105,9 +105,9 @@ function romanToInteger(roman) {
   }
   //Create one custom event
   gtag('event','Roman_To_Integer_Used',
-       {'Result': total,
-        'timestamp': new Date().toISOString()
-  });
+    {'Result': total,
+      'timestamp': new Date().toISOString()
+    });
   
   return total;
 }
