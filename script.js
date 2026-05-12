@@ -1,4 +1,13 @@
 /**
+ * Mock Google Analytics gtag function for testing environments
+ * In production, this will be overridden by the actual gtag from Google Analytics
+ */
+if (typeof gtag === 'undefined') {
+  window.gtag = function() {
+    // No-op function - does nothing in test environments
+  };
+}
+/**
  * Converts an integer (between 1 and 3999) to its Roman numeral equivalent.
  *
  * @param {number} num - The integer to convert.
